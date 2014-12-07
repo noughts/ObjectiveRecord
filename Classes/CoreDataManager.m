@@ -115,6 +115,9 @@
 #pragma mark - SQLite file directory
 
 - (NSURL *)applicationDocumentsDirectory {
+	if( _groupIdentifier ){
+		return [[NSFileManager defaultManager] containerURLForSecurityApplicationGroupIdentifier:_groupIdentifier];
+	}
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory
                                                    inDomains:NSUserDomainMask] lastObject];
 }
